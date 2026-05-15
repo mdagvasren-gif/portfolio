@@ -51,7 +51,7 @@ body.hov #cur-dot{transform:translate(0,0) scale(.92);filter:drop-shadow(0 2px 2
 .nav-menu{display:flex;}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 100px;position:relative;overflow:hidden;background:#07090f url('images/hero/samurai-background.jpg') center 58%/cover no-repeat;isolation:isolate;}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 100px;position:relative;overflow:hidden;background:#07090f url('images/hero/Samurai%20background.jpg') center 58%/cover no-repeat;isolation:isolate;}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(230,36,42,.07),rgba(0,0,0,.22) 46%,rgba(0,0,0,.68) 100%),linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.64));z-index:-1;}
 .hero>.orb{display:none;}
 .hero>*{position:relative;z-index:1;}.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orbDrift linear infinite;will-change:transform;}
@@ -101,7 +101,7 @@ body.hov #cur-dot{transform:translate(0,0) scale(.92);filter:drop-shadow(0 2px 2
 @keyframes swheel{0%,100%{opacity:1;transform:translateY(0);}50%{opacity:0;transform:translateY(9px);}}
 
 /* SECTION */
-.sec{max-width:1100px;margin:0 auto;padding:110px 40px;scroll-margin-top:52px;}
+.sec{max-width:1100px;margin:0 auto;padding:110px 40px;scroll-margin-top:52px;}#skills{scroll-margin-top:72px;}
 .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text3);margin-bottom:16px;}
 .sec-title{font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;letter-spacing:-1.8px;line-height:1.06;margin-bottom:64px;}
 .divider{width:100%;height:.5px;background:linear-gradient(90deg,transparent,rgba(230,36,42,.22),transparent);}
@@ -130,10 +130,8 @@ body.hov #cur-dot{transform:translate(0,0) scale(.92);filter:drop-shadow(0 2px 2
 .about-highlight span{display:block;color:rgba(245,245,247,.58);font-size:12px;line-height:1.45;}
 
 /* SKILLS */
-.skills-marquee-wrap{overflow:hidden;margin-bottom:14px;border-radius:var(--r);padding:28px 0;position:relative;max-width:100%;contain:paint;}
-.skills-marquee-wrap::before,.skills-marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;}
-.skills-marquee-wrap::before{left:0;background:linear-gradient(to right,rgba(0,0,0,.75) 0%,rgba(0,0,0,.3) 45%,transparent 100%);}
-.skills-marquee-wrap::after{right:0;background:linear-gradient(to left,rgba(0,0,0,.75) 0%,rgba(0,0,0,.3) 45%,transparent 100%);}
+.skills-marquee-wrap{overflow:hidden;margin-bottom:14px;border-radius:var(--r);padding:28px 0;position:relative;max-width:100%;contain:paint;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);}
+.skills-marquee-wrap::before,.skills-marquee-wrap::after{display:none;}
 .skills-track{display:flex;gap:24px;width:max-content;animation:marquee 42s linear infinite;}
 .skills-track:hover{animation-play-state:paused;}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -695,6 +693,98 @@ body.viewer-open{overflow:hidden;}
 /* Required chat fields */
 .chat-required-warning{margin:0 14px 8px;padding:8px 12px;border-radius:12px;background:rgba(255,59,48,.1);border:.5px solid rgba(255,59,48,.28);color:#ff3b30;font-size:12px;font-weight:500;line-height:1.35;}
 .chat-name-inp.chat-field-error{border-color:#ff3b30!important;background:rgba(255,59,48,.08)!important;box-shadow:0 0 0 3px rgba(255,59,48,.12)!important;}
+
+/* Mobile layout hardening */
+@media (max-width: 768px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden;}
+  body{min-width:0;}
+  img,video,svg{max-width:100%;height:auto;}
+  .nav{width:100vw;}
+  .nav-inner{width:100%;padding-inline:16px;}
+  .nav-logo{max-width:calc(100vw - 72px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .nav-menu{max-height:calc(100dvh - 48px);overflow-y:auto;}
+
+  .hero{min-height:100svh;padding:82px 16px 72px;background-position:center top;overflow:hidden;}
+  .hero-badge{max-width:100%;padding:7px 14px;font-size:10px;letter-spacing:1.7px;white-space:normal;justify-content:center;}
+  .hero-title-img{width:min(96vw,720px);max-height:24vh;object-fit:contain;}
+  .hero-cta{width:100%;margin-top:30px;}
+  .btn-p,.btn-g{min-height:48px;padding:13px 22px;}
+  .scroll-cue{bottom:24px;}
+
+  .sec{width:100%;max-width:100%;padding:66px 16px;}
+  .sec-title{overflow-wrap:anywhere;}
+  .profile-row{align-items:flex-start;gap:14px;}
+  .avatar{width:60px;height:60px;}
+  .bio{font-size:15px;}
+
+  .skills-marquee-wrap{margin-inline:-16px;border-radius:0;padding:22px 0;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 13%,#000 87%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 13%,#000 87%,transparent 100%);}
+  .skills-track{gap:14px;}
+  .skill-pill{gap:9px;padding:8px 18px;}
+  .skill-pill img{width:26px;height:26px;}
+  .skill-pill span{font-size:14px;}
+  .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .skill-card{padding:18px 10px;min-width:0;}
+  .skill-logo-box{width:46px;height:46px;}
+  .skill-logo{width:42px;height:42px;}
+  .skill-name{font-size:12px;line-height:1.25;overflow-wrap:anywhere;}
+
+  .skill-group-head{align-items:flex-start;}
+  .skill-tag{font-size:12px;border-radius:12px;}
+  .extra-skills{grid-template-columns:1fr;}
+
+  .tl-wrap{padding-left:20px;}
+  .tl-dot{left:-25px!important;}
+  .tl-card{padding:18px 16px;}
+
+  .project-browser{border-radius:16px;margin-inline:0;}
+  .folder-toolbar{gap:10px;padding:12px;}
+  .folder-nav{width:100%;}
+  .folder-crumbs{flex:1;min-width:0;}
+  .folder-crumb{max-width:42vw;font-size:12px;}
+  .folder-count{padding-left:44px;font-size:11px;}
+  .folder-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:14px!important;}
+  .folder-tile,.file-tile{padding:12px 6px 14px;}
+  .folder-icon{width:min(118px,100%)!important;}
+  .folder-name,.file-name{font-size:13px;line-height:1.2;}
+  .folder-meta,.file-meta{font-size:10.5px;}
+  .photos-grid{grid-template-columns:1fr!important;padding:12px!important;gap:12px!important;}
+  .photos-grid .file-tile{border-radius:18px;border-width:3px;}
+  .photos-grid .file-name{left:12px;right:72px;bottom:26px;font-size:14px;}
+  .photos-grid .file-meta{left:12px;right:72px;bottom:10px;font-size:11px;}
+
+  .viewer-dialog{width:calc(100vw - 16px)!important;height:auto;max-height:calc(100dvh - 16px);padding:12px!important;border-radius:18px;}
+  .viewer-hd{gap:10px;}
+  .viewer-ttl{font-size:15px;}
+  .viewer-meta{gap:5px;}
+  .viewer-meta span{font-size:10.5px;padding:4px 7px;}
+  .viewer-stage{min-height:220px;width:100%!important;max-width:100%!important;}
+  .viewer-canvas,.viewer-stage img,.viewer-stage video{max-height:calc(100dvh - 190px);}
+  .viewer-dots{max-width:100%;overflow:hidden;}
+  .viewer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+
+  .contact-card{padding:18px 16px;gap:12px;}
+  .c-val{font-size:13px;}
+
+  .chat-box{max-width:100%!important;border-radius:18px!important;}
+  .chat-hd{padding:12px!important;gap:10px!important;}
+  .chat-av{width:38px!important;height:38px!important;}
+  .chat-hd-name{font-size:14px!important;}
+  .chat-msgs{height:320px!important;padding:12px!important;}
+  .bubble{font-size:15px!important;max-width:88%!important;}
+  .chat-name-row{grid-template-columns:1fr!important;}
+  .chat-ft{padding:8px 10px 12px!important;}
+  .chat-inp{min-width:0!important;}
+}
+
+@media (max-width: 380px){
+  .sec{padding-inline:14px;}
+  .skills-grid{grid-template-columns:1fr 1fr!important;}
+  .folder-grid{grid-template-columns:1fr!important;}
+  .folder-icon{width:min(150px,62vw)!important;}
+  .viewer-grid{grid-template-columns:1fr!important;}
+  .hero-title-img{width:98vw;}
+  .btn-p,.btn-g{max-width:100%;}
+}
 </style>
 </head>
 <body>
@@ -771,7 +861,7 @@ body.viewer-open{overflow:hidden;}
       <div class="about-highlight"><strong>Video & Marketing</strong><span>Editing, shooting, strategy support</span></div>
     </div>
   </div>
-  <div style="margin-top:56px;">
+  <div style="margin-top:56px;" id="skills">
     <h2 class="sec-title rv" style="margin-bottom:32px;">Skills.</h2>
     <div class="skills-marquee-wrap rv" id="marquee-wrap"></div>
     <div class="skills-grid" id="skills-grid"></div>
@@ -889,7 +979,7 @@ body.viewer-open{overflow:hidden;}
   </div>
 </div>
 
-<div class="footer"><p>© 2026 <strong>Мягмар Давгасүрэн</strong> — Designed with care ✦</p></div>
+<div class="footer"><p>© 2026 <strong>Surenn</strong></p></div>
 
 <script>// CURSOR
 const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1408,7 +1498,7 @@ function posterFileName(src,index){
 function setProjectPath(company=null,project=null){projectState={company,project};renderProjectBrowser();}
 function folderTile({name,meta,count,logo,color,onOpen}){
   const btn=document.createElement('button');btn.type='button';btn.className='folder-item';if(name==='Remote Jobs')btn.classList.add('remote-folder');
-  const folderIconSrc=(name==='Remote Jobs'||projectState.company==='Remote Jobs')?'images/inline/folder-remote-red.png':'images/inline/folder-ok-transparent.png';
+  const folderIconSrc='images/inline/folder-ok-transparent.png';
   btn.innerHTML=`<div class="folder-tile"><div class="folder-icon"><img class="folder-icon-img" loading="lazy" decoding="async" src="${folderIconSrc}" alt="Folder"></div><div class="folder-name">${name}</div><div class="folder-meta">${meta}</div></div>`;
   btn.addEventListener('click',onOpen);return btn;
 }
@@ -2184,6 +2274,14 @@ if (window.matchMedia('(pointer:coarse)').matches) {
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
